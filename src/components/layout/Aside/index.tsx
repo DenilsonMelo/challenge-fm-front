@@ -39,8 +39,8 @@ export default function Aside() {
             Motoristas
           </Link>
         </TabItem>
-        <TabItem $active={currentPathname === "/"}>
-          <Link href="/">
+        <TabItem $active={currentPathname === "/veiculos"}>
+          <Link href="/veiculos">
             <PiTruckLight size={20} />
             Veículos
           </Link>
