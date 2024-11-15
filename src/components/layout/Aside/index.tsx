@@ -21,8 +21,8 @@ export default function Aside() {
             Dashboard
           </Link>
         </TabItem>
-        <TabItem $active={currentPathname === "/"}>
-          <Link href="/">
+        <TabItem $active={currentPathname === "/fretes"}>
+          <Link href="/fretes">
             <PiPackage size={20} />
             Fretes
           </Link>

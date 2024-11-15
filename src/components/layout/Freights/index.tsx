@@ -6,14 +6,18 @@ import {
   Actions,
   Content,
   Sidebar,
-  MenuItem,
   SidebarHeader,
 } from "./styles";
 import SearchInput from "@/components/common/SearchInput";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import FormFreight from "@/components/forms/FormFreight";
+import { FreightResponseData } from "@/domain/Freight";
 
-export default function Freights() {
+type FreightsProps = {
+  data: FreightResponseData[];
+};
+
+export default function Freights({ data }: FreightsProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = () => {
@@ -48,22 +52,17 @@ export default function Freights() {
           <span>Ações</span>
         </TableHeader>
         <TableContent>
-          <p>XXXXXXX</p>
-          <p>XX/XX - XX:XX</p>
-          <p>Username Name</p>
-          <p>Nome da carga</p>
-          <p>Aguardando lance</p>
-          <p>R$ 1.220,00</p>
-          <FaEdit />
-        </TableContent>
-        <TableContent>
-          <p>XXXXXXX</p>
-          <p>XX/XX - XX:XX</p>
-          <p>Username Name</p>
-          <p>Nome da carga</p>
-          <p>Aguardando lance</p>
-          <p>R$ 1.220,00</p>
-          <FaEdit />
+          {data.map((item) => (
+            <Fragment key={item.id}>
+              <span>{item.id}</span>
+              <span>{item.dateFreight}</span>
+              <span>{item.carrier.name}</span>
+              <span>{item.packages.type}</span>
+              <span>{item.status}</span>
+              <span>{item.payment.amount}</span>
+              <FaEdit />
+            </Fragment>
+          ))}
         </TableContent>
       </Content>
     </Container>

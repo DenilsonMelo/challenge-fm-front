@@ -1,7 +1,13 @@
+import { DriverResponseData } from "@/domain/Driver";
 import { TitleSection } from "../layout/Header/styles";
 import { Container, DriverLabels, DriverContent } from "./styles";
+import { Fragment } from "react";
 
-export default function Drivers() {
+type DriversProps = {
+  data: DriverResponseData[];
+};
+
+export default function Drivers({ data }: DriversProps) {
   return (
     <Container>
       <TitleSection>Motoristas</TitleSection>
@@ -10,12 +16,12 @@ export default function Drivers() {
         <span>Nome</span>
       </DriverLabels>
       <DriverContent>
-        <span>1</span>
-        <span>Denilson</span>
-        <span>2</span>
-        <span>Carlos Augusto</span>
-        <span>32</span>
-        <span>Pedro</span>
+        {data.map((item) => (
+          <Fragment key={item.id}>
+          <span>{item.id}</span>
+          <span>{item.name}</span>
+          </Fragment>
+        ))}
       </DriverContent>
     </Container>
   );

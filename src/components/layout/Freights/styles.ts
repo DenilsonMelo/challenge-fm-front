@@ -14,11 +14,13 @@ export const TableHeader = styled.div`
 export const TableContent = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 4fr 2fr 2fr 2fr 1fr;
-  font-size: 12px;
-  font-weight: 500;
-  color: ${({ theme }) => theme.colors.primaryText[9]};
-  padding: 12px 0;
-  border-top: 1px solid ${({ theme }) => theme.colors.primaryText[3]};
+  span {
+    font-size: 12px;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.primaryText[9]};
+    padding: 12px 0;
+    border-top: 1px solid ${({ theme }) => theme.colors.primaryText[3]};
+  }
 `;
 
 export const Actions = styled.div`
@@ -60,7 +62,6 @@ export const Sidebar = styled.div<{ $isOpen: boolean }>`
   width: 420px;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.primaryText.white};
-  color: red;
   z-index: 4;
 
   ${({ $isOpen }) =>
@@ -75,13 +76,13 @@ export const Sidebar = styled.div<{ $isOpen: boolean }>`
   transition: transform 0.3s ease;
   padding: 28px;
 
-  span{
+  span {
     font-size: 20px;
     font-weight: 500;
     color: ${({ theme }) => theme.colors.primaryText[9]};
   }
 
-  .close-button{
+  .close-button {
     border-radius: 50%;
     padding: 12px;
     font-size: 20px;

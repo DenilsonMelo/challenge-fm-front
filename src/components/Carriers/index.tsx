@@ -1,7 +1,13 @@
+import { CarrierResponseData } from "@/domain/Carrier";
 import { TitleSection } from "../layout/Header/styles";
 import { Container, CarrierLabels, CarrierContent } from "./styles";
+import { Fragment } from "react";
 
-export default function Carriers() {
+type CarriersProps = {
+  data: CarrierResponseData[];
+};
+
+export default function Carriers({ data }: CarriersProps) {
   return (
     <Container>
       <TitleSection>Transportadoras</TitleSection>
@@ -10,12 +16,12 @@ export default function Carriers() {
         <span>Nome</span>
       </CarrierLabels>
       <CarrierContent>
-        <span>1</span>
-        <span>Denilson</span>
-        <span>2</span>
-        <span>Carlos Augusto</span>
-        <span>32</span>
-        <span>Pedro</span>
+        {data.map((item) => (
+          <Fragment key={item.id}>
+            <span>{item.id}</span>
+            <span>{item.name}</span>
+          </Fragment>
+        ))}
       </CarrierContent>
     </Container>
   );

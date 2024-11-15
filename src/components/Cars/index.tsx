@@ -1,7 +1,13 @@
+import { CarResponseData } from "@/domain/Car";
 import { TitleSection } from "../layout/Header/styles";
 import { Container, CarLabels, CarContent } from "./styles";
+import { Fragment } from "react";
 
-export default function Cars() {
+type CarsProps = {
+  data: CarResponseData[];
+};
+
+export default function Cars({ data }: CarsProps) {
   return (
     <Container>
       <TitleSection>Veículos</TitleSection>
@@ -11,9 +17,13 @@ export default function Cars() {
         <span>Tipo</span>
       </CarLabels>
       <CarContent>
-        <span>1</span>
-        <span>Perua</span>
-        <span>Van</span>
+        {data.map((item) => (
+          <Fragment key={item.id}>
+            <span>{item.id}</span>
+            <span>{item.model}</span>
+            <span>{item.type}</span>
+          </Fragment>
+        ))}
       </CarContent>
     </Container>
   );

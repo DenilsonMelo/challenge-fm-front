@@ -16,5 +16,7 @@ export default function Page() {
 
   const dataArray = Object.values(data);
 
+  console.log(dataArray)
+
   return <Freights data={dataArray}/>;
 }
