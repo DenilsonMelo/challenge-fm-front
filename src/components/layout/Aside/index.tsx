@@ -33,8 +33,8 @@ export default function Aside() {
             Transportadoras
           </Link>
         </TabItem>
-        <TabItem $active={currentPathname === "/"}>
-          <Link href="/">
+        <TabItem $active={currentPathname === "/motoristas"}>
+          <Link href="/motoristas">
             <TbUsers size={20} />
             Motoristas
           </Link>
