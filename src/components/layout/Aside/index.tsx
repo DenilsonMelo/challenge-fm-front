@@ -27,8 +27,8 @@ export default function Aside() {
             Fretes
           </Link>
         </TabItem>
-        <TabItem $active={currentPathname === "/"}>
-          <Link href="/">
+        <TabItem $active={currentPathname === "/transportadoras"}>
+          <Link href="/transportadoras">
             <PiTruckLight size={20} />
             Transportadoras
           </Link>
