@@ -1,15 +1,22 @@
-export enum FreightStatus {
-    EM_ROTA = "Em rota",
-    AGUARDANDO_LANCE = "Aguardando lance",
-    ENTREGUE = "Entregue"
-}
+import { z } from "zod";
+import { DriverSchema } from "../Driver";
+import { CarrierSchema } from "../Carrier";
+import { CarSchema } from "../Car";
+import { PaymentSchema } from "../Payment";
+import { PackageSchema } from "../Package";
 
-export interface FreightResponseData {
-    status: FreightStatus;
-    date: string;
-    driver: string;
-    carrier: string;
-    vehicleType: string;
-    packageType: string;
-    paymentType: string;
+export const FreightSchema = z.object({
+    id: z.string().optional(),
+    status: z.string().min(1),
+    dateFreight: z.string().min(6),
+    driver: DriverSchema,
+    carrier: CarrierSchema,
+    car: CarSchema,
+    payment: PaymentSchema,
+    packages: PackageSchema
+});
+
+export type FreightData = z.infer<typeof FreightSchema>;
+
+export interface FreightResponseData extends FreightData {
 }
