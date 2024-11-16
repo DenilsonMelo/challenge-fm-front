@@ -13,6 +13,7 @@ import FreightService from "@/services/Freight";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import FormFreight from "@/components/forms/FormFreight";
 import { FreightResponseData } from "@/domain/Freight";
+import { format } from "date-fns";
 
 type FreightsProps = {
   data: FreightResponseData[];
@@ -81,7 +82,7 @@ export default function Freights({ data }: FreightsProps) {
           {freights.map((item) => (
             <Fragment key={item.id}>
               <span>{item.id}</span>
-              <span>{item.dateFreight}</span>
+              <span>{format(item.dateFreight, "dd/MM/yyyy")}</span>
               <span>{item.carrier.name}</span>
               <span>{item.packages.type}</span>
               <span>{item.status}</span>
