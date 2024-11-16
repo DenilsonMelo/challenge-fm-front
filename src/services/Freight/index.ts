@@ -1,4 +1,4 @@
-import { FreightResponseData } from "@/domain/Freight";
+import { FreightCreateDTO, FreightResponseData } from "@/domain/Freight";
 import api from "@/http/api";
 import { AxiosResponse } from "axios";
 
@@ -11,7 +11,7 @@ class FreightService {
     );
   }
 
-  async create(body: ConsultationCreateDTO): Promise<AxiosResponse> {
+  async create(body: FreightCreateDTO): Promise<AxiosResponse> {
     return await api.post(
       `${process.env.NEXT_PUBLIC_API}/${FreightService.path}`,
       body,

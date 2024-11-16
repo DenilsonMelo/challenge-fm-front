@@ -18,5 +18,15 @@ export const FreightSchema = z.object({
 
 export type FreightData = z.infer<typeof FreightSchema>;
 
-export interface FreightResponseData extends FreightData {
+export interface FreightCreateDTO {
+    id?: string;
+    status: string;
+    dateFreight: string;
+    driver: string;
+    carrier: string;
+    car: string;
+    payment: string;
+    packages: string;
 }
+
+export interface FreightResponseData extends FreightData {}
