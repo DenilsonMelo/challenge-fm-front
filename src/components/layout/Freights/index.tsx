@@ -9,7 +9,7 @@ import {
   SidebarHeader,
 } from "./styles";
 import SearchInput from "@/components/common/SearchInput";
-import { Fragment, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import FormFreight from "@/components/forms/FormFreight";
 import { FreightResponseData } from "@/domain/Freight";
 
@@ -19,10 +19,21 @@ type FreightsProps = {
 
 export default function Freights({ data }: FreightsProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [freights, setFreights] = useState<FreightResponseData[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      setFreights(data);
+    }
+  }, [data]);
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
   };
+
+  const addFreight = useCallback((newFreight: FreightResponseData) => {
+    setFreights((state) => [...state, newFreight]);
+  }, []);
 
   return (
     <Container>
@@ -33,7 +44,7 @@ export default function Freights({ data }: FreightsProps) {
             X
           </div>
         </SidebarHeader>
-        <FormFreight />
+        <FormFreight addFreight={addFreight} />
       </Sidebar>
       <Actions>
         <SearchInput />
@@ -52,7 +63,7 @@ export default function Freights({ data }: FreightsProps) {
           <span>Ações</span>
         </TableHeader>
         <TableContent>
-          {data.map((item) => (
+          {freights.map((item) => (
             <Fragment key={item.id}>
               <span>{item.id}</span>
               <span>{item.dateFreight}</span>

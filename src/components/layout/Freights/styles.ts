@@ -62,6 +62,7 @@ export const Sidebar = styled.div<{ $isOpen: boolean }>`
   width: 420px;
   height: 100vh;
   background-color: ${({ theme }) => theme.colors.primaryText.white};
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 4;
 
   ${({ $isOpen }) =>
