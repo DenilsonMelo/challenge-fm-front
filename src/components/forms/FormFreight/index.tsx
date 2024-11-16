@@ -13,17 +13,21 @@ export default function FormFreight({ addFreight }: FormFreightProps) {
   const { carData, packagesData, paymentData, driverData, carrierData } =
     useCompleteData();
 
-  const { register, handleSubmit } = useForm<FreightCreateDTO>();
+  const { register, handleSubmit, reset } = useForm<FreightCreateDTO>();
 
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async (data: FreightCreateDTO) => {
     setIsSubmitting(true);
 
-    const { data: dataResponse } = await FreightService.create(data);
+    try {
+      const { data: dataResponse } = await FreightService.create(data);
+      addFreight(dataResponse as FreightResponseData);
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
 
-    addFreight(dataResponse as FreightResponseData);
-    
     setIsSubmitting(false);
   };
 

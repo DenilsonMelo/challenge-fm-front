@@ -1,4 +1,4 @@
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import {
   Container,
   TableHeader,
@@ -9,6 +9,7 @@ import {
   SidebarHeader,
 } from "./styles";
 import SearchInput from "@/components/common/SearchInput";
+import FreightService from "@/services/Freight";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import FormFreight from "@/components/forms/FormFreight";
 import { FreightResponseData } from "@/domain/Freight";
@@ -35,6 +36,20 @@ export default function Freights({ data }: FreightsProps) {
     setFreights((state) => [...state, newFreight]);
   }, []);
 
+  const removeProcedureCallback = useCallback((idToRemove: string) => {
+    setFreights((state) => state.filter((item) => item.id !== idToRemove));
+  }, []);
+
+  const handleDelete = async (id: string) => {
+    try {
+      await FreightService.delete(id);
+
+      removeProcedureCallback(id);
+    } catch (error) {
+      console.error(error)
+    }
+  };
+
   return (
     <Container>
       <Sidebar $isOpen={isOpen}>
@@ -47,7 +62,7 @@ export default function Freights({ data }: FreightsProps) {
         <FormFreight addFreight={addFreight} />
       </Sidebar>
       <Actions>
-        <SearchInput />
+        <SearchInput placeholder="Buscar frete" />
         <div className="add-button" onClick={toggleSidebar}>
           +
         </div>
@@ -71,7 +86,14 @@ export default function Freights({ data }: FreightsProps) {
               <span>{item.packages.type}</span>
               <span>{item.status}</span>
               <span>{item.payment.amount}</span>
-              <FaEdit />
+              <span className="actions-icons">
+                <FaEdit style={{ cursor: "pointer" }} size={16} />
+                <FaTrash
+                  style={{ cursor: "pointer" }}
+                  size={16}
+                  onClick={() => handleDelete(item?.id as string)}
+                />
+              </span>
             </Fragment>
           ))}
         </TableContent>

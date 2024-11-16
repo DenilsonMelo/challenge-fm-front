@@ -29,4 +29,6 @@ export interface FreightCreateDTO {
     packages: string;
 }
 
+export interface FreightUpdateDTO extends Partial<FreightData> {}
+
 export interface FreightResponseData extends FreightData {}

@@ -22,6 +22,12 @@ class FreightService {
       }
     );
   }
+
+  async delete(id: string){
+    return await api.delete<FreightResponseData>(
+      `${process.env.NEXT_PUBLIC_API}/${FreightService.path}/${id}`
+    );
+  }
 }
 
 const instance = new FreightService();
