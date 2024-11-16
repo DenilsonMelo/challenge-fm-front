@@ -10,6 +10,6 @@ export const ContainerLayout = styled.div`
   grid-template-areas: "aside header" "aside main";
 
   @media (max-width: 991px) {
-    grid-template-areas: "header header" "main main";
+    grid-template-areas: "aside header" "main main";
   }
 `;

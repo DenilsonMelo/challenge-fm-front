@@ -21,6 +21,11 @@ export const TableContent = styled.div`
     padding: 12px 0;
     border-top: 1px solid ${({ theme }) => theme.colors.primaryText[3]};
   }
+
+  .actions-icons{
+    display: flex;
+    gap: 12px;
+  }
 `;
 
 export const Actions = styled.div`
