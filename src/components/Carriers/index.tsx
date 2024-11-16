@@ -2,6 +2,7 @@ import { CarrierResponseData } from "@/domain/Carrier";
 import { TitleSection } from "../layout/Header/styles";
 import { Container, CarrierLabels, CarrierContent } from "./styles";
 import { Fragment } from "react";
+import SearchInput from "../common/SearchInput";
 
 type CarriersProps = {
   data: CarrierResponseData[];
@@ -11,6 +12,7 @@ export default function Carriers({ data }: CarriersProps) {
   return (
     <Container>
       <TitleSection>Transportadoras</TitleSection>
+      <SearchInput placeholder="Buscar transportadoras"/>
       <CarrierLabels>
         <span>ID</span>
         <span>Nome</span>
